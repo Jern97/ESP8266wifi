@@ -25,7 +25,7 @@ const char LINK_IS_NOT[] PROGMEM = "link is not";
 const char PROMPT[] PROGMEM = ">";
 const char BUSY[] PROGMEM =  "busy";
 const char LINKED[] PROGMEM = "Linked";
-const char ALREADY[] PROGMEM = "ALREAY";//yes typo in firmware..
+const char ALREADY[] PROGMEM = "ALREADY";
 const char READY[] PROGMEM = "ready";
 const char NO_IP[] PROGMEM = "0.0.0.0";
 
@@ -271,7 +271,7 @@ bool SerialESP8266wifi::connectToServer(){
     writeCommand(COMMA_1);
     _serialOut -> println(_port);
 
-    flags.connectedToServer = (readCommand(10000, LINKED, ALREADY) > 0);
+    flags.connectedToServer = (readCommand(10000, CONNECT, ALREADY) > 0);
 
     if(flags.connectedToServer)
         serverRetries = 0;
@@ -282,7 +282,7 @@ bool SerialESP8266wifi::connectToServer(){
 void SerialESP8266wifi::disconnectFromServer(){
     flags.connectedToServer = false;
     flags.serverConfigured = false;//disable reconnect
-    writeCommand(CIPCLOSE);
+    writeCommand(CIPCLOSE, EOL);
     readCommand(2000, OK); //fire and forget in this case..
 }
 
