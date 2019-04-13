@@ -154,7 +154,7 @@ private:
     Flags flags;
     
     bool connectToServer();
-    char _ip[16];
+    char _ip[32];
     char _port[6];
     
     bool connectToAP();

@@ -641,34 +641,6 @@ byte SerialESP8266wifi::readCommand(int timeout, const char* text1, const char* 
     } while (millis() < stop);
     return 0;
 }
-
-// Unload buffer without delay
-/*byte ESP8266wifiESP8266wifi::readCommand(const char* text1, const char* text2) {
-    // setup buffers on stack & copy data from PROGMEM pointers
-    char buf1[16] = {'\0'};
-    char buf2[16] = {'\0'};
-    if (text1 != NULL)
-        strcpy_P(buf1, (char *) text1);
-    if (text2 != NULL)
-        strcpy_P(buf2, (char *) text2);
-    byte len1 = strlen(buf1);
-    byte len2 = strlen(buf2);
-    byte pos1 = 0;
-    byte pos2 = 0;
-
-    // read chars until first match or timeout
-    while (_serialIn->available()) {
-        char c = readChar();
-        pos1 = (c == buf1[pos1]) ? pos1 + 1 : 0;
-        pos2 = (c == buf2[pos2]) ? pos2 + 1 : 0;
-        if (len1 > 0 && pos1 == len1)
-            return 1;
-        if (len2 > 0 && pos2 == len2)
-            return 2;
-    }
-    return 0;
-}*/
-
 // Reads count chars to a buffer, or until delim char is found
 byte SerialESP8266wifi::readBuffer(char* buf, byte count, char delim) {
     byte pos = 0;
