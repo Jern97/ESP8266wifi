@@ -682,9 +682,10 @@ byte SerialESP8266wifi::readBuffer(char *buf, byte count, char delim)
 char SerialESP8266wifi::readChar()
 {
     char c = _serialIn->read();
+    delayMicroseconds(100);
     if (flags.debug)
         _dbgSerial->print(c);
     else
-        sqrt(12345); //delayMicroseconds(50); // don't know why
+        //sqrt(12345); //delayMicroseconds(50); // don't know why
     return c;
 }
