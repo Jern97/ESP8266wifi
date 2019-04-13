@@ -141,8 +141,7 @@ public:
     /*
      * Scan for incoming message, do this as often and as long as you can (use as sleep in loop)
      */
-    WifiMessage listenForIncomingMessage(int timeoutMillis);
-    WifiMessage getIncomingMessage(void);
+    WifiMessage getIncomingMessage(int timeoutMillis = 10);
     bool isConnection(void);
     bool checkConnections(WifiConnection **pConnections);
     
@@ -172,7 +171,6 @@ private:
     bool restart();
     
     byte serverRetries;
-    
     
     char msgOut[MSG_BUFFER_MAX];//buffer for send method
     char msgIn[MSG_BUFFER_MAX]; //buffer for listen method = limit of incoming message..
