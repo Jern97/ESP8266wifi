@@ -689,3 +689,11 @@ char SerialESP8266wifi::readChar()
         //sqrt(12345); //delayMicroseconds(50); // don't know why
     return c;
 }
+
+void SerialESP8266wifi::turnOn(){
+    digitalWrite(_resetPin, HIGH);
+}
+
+void SerialESP8266wifi::turnOff(){
+    digitalWrite(_resetPin, LOW);
+}

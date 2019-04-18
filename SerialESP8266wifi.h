@@ -144,6 +144,9 @@ public:
     WifiMessage getIncomingMessage(int timeoutMillis = 10);
     bool isConnection(void);
     bool checkConnections(WifiConnection **pConnections);
+
+    void turnOn();
+    void turnOff();
     
 private:
     Stream* _serialIn;
