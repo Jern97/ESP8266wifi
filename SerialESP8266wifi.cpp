@@ -684,8 +684,8 @@ char SerialESP8266wifi::readChar()
     char c = _serialIn->read();
     if (flags.debug)
         _dbgSerial->print(c);
-    else
-        delayMicroseconds(100);
+    if(!_serialIn.available()) delayMicroseconds(100);
+
     return c;
 }
 
