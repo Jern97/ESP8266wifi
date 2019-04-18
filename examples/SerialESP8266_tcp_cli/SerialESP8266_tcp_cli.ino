@@ -21,7 +21,7 @@
 SoftwareSerial swSerial(sw_serial_rx_pin, sw_serial_tx_pin);
 
 // the last parameter sets the local echo option for the ESP8266 module..
-SerialESP8266wifi wifi(Serial, Serial, esp8266_reset_pin, swSerial);
+SerialESP8266wifi wifi(swSerial, swSerial, esp8266_reset_pin, Serial);
 
 void processCommand(WifiMessage msg);
 
