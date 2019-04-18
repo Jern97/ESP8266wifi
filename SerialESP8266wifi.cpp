@@ -431,12 +431,12 @@ bool SerialESP8266wifi::watchdog()
 /*
  * Send string (if channel is connected of course)
  */
-bool SerialESP8266wifi::send(char channel, String &message, bool sendNow)
+bool SerialESP8266wifi::send(String &message, char channel, bool sendNow)
 {
-    return send(channel, message.c_str(), sendNow);
+    return send(message.c_str(),channel, sendNow);
 }
 
-bool SerialESP8266wifi::send(char channel, const char *message, bool sendNow)
+bool SerialESP8266wifi::send(const char *message, char channel, bool sendNow)
 {
     watchdog();
     byte avail = sizeof(msgOut) - strlen(msgOut) - 1;

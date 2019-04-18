@@ -130,8 +130,8 @@ public:
     /*
      * Send string (if channel is connected of course)
      */
-    bool send(char channel, String& message, bool sendNow = true);
-    bool send(char channel, const char * message, bool sendNow = true);
+    bool send(String& message, char channel = SERVER, bool sendNow = true);
+    bool send(const char * message, char channel = SERVER, bool sendNow = true);
     
     /*
      * Default is true.
