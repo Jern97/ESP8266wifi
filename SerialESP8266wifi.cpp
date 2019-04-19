@@ -476,6 +476,11 @@ bool SerialESP8266wifi::send(const char *message, char channel, bool sendNow)
     msgOut[0] = '\0';
     return false;
 }
+bool SerialESP8266wifi::sendBig(String &message, char channel)
+{
+    return sendBig(message.c_str(),channel);
+}
+
 bool SerialESP8266wifi::sendBig(const char *message, char channel)
 {
     watchdog();
