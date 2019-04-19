@@ -476,6 +476,41 @@ bool SerialESP8266wifi::send(const char *message, char channel, bool sendNow)
     msgOut[0] = '\0';
     return false;
 }
+bool SerialESP8266wifi::sendBig(const char *message, char channel)
+{
+    watchdog();
+    int length = strlen(message);
+
+    if (flags.endSendWithNewline)
+        length += 2;
+
+    writeCommand(CIPSEND);
+    _serialOut->print(channel);
+    writeCommand(COMMA);
+    _serialOut->println(length);
+    byte prompt = readCommand(1000, PROMPT, LINK_IS_NOT);
+    if (prompt != 2)
+    {
+        if (flags.endSendWithNewline)
+            _serialOut->println(message);
+        else
+            _serialOut->print(message);
+        byte sendStatus = readCommand(5000, SEND_OK, BUSY);
+        if (sendStatus == 1)
+        {
+            if (channel == SERVER)
+                flags.connectedToServer = true;
+            return true;
+        }
+    }
+    //else
+    if (channel == SERVER)
+        flags.connectedToServer = false;
+    else
+        _connections[channel - 0x30].connected = false;
+    return false;
+}
+
 
 // Checks to see if there is a client connection
 bool SerialESP8266wifi::isConnection(void)

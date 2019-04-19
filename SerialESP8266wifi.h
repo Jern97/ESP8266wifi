@@ -132,6 +132,8 @@ public:
      */
     bool send(String& message, char channel = SERVER, bool sendNow = true);
     bool send(const char * message, char channel = SERVER, bool sendNow = true);
+    bool sendBig(const char * message, char channel = SERVER);
+
     
     /*
      * Default is true.
